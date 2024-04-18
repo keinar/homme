@@ -1,5 +1,5 @@
 'use client'
-// import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { UserButton, useUser } from '@clerk/nextjs'
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
@@ -27,9 +27,8 @@ function Header() {
                 </ul>
             </div>
             <div className='flex gap-2'>
-                <button className='flex gap-2'><Plus className='h-5 w-5' />Post Your Add</button>
-                {isSignedIn ? <UserButton /> : <button variant='outline'>Login</button>}
-
+                <Button className='flex gap-2'><Plus className='h-5 w-5' />Post Your Add</Button>
+                {isSignedIn ? <UserButton /> : <Button variant='outline'>Login</Button>}
             </div>
         </div>
     )

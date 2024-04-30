@@ -41,7 +41,6 @@ function EditListing({ params }) {
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         console.log(user?.imageUrl)
-        // console.log(params.split('/')[2]);
         user && verifyUserRecord();
     }, [user]);
 
@@ -113,20 +112,19 @@ function EditListing({ params }) {
 
     }
 
-    const publishBtnHandler=async()=>{
+    const publishBtnHandler = async () => {
         setLoading(true)
         const { data, error } = await supabase
-        .from('listing')
-        .update({ active: true })
-        .eq('id', params?.id)
-        .select()
+            .from('listing')
+            .update({ active: true })
+            .eq('id', params?.id)
+            .select()
 
-        if(data)
-        {
+        if (data) {
             setLoading(false)
             toast('Listing published!')
         }
-        
+
     }
 
     return (
@@ -137,8 +135,8 @@ function EditListing({ params }) {
                 initialValues={{
                     type: '',
                     propertyType: '',
-                    profileImage:user?.imageUrl,
-                    fullName:user?.fullName
+                    profileImage: user?.imageUrl,
+                    fullName: user?.fullName
                 }}
                 onSubmit={(values) => {
                     console.log(values);
@@ -273,22 +271,22 @@ function EditListing({ params }) {
 
                                     <AlertDialog>
                                         <AlertDialogTrigger asChild>
-                                        <Button type="button" disabled={loading} className="">
-                                        {loading ? <Loader className='animate-spin' /> : 'Save & Publish'}
-                                    </Button>
+                                            <Button type="button" disabled={loading} className="">
+                                                {loading ? <Loader className='animate-spin' /> : 'Save & Publish'}
+                                            </Button>
                                         </AlertDialogTrigger>
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
                                                 <AlertDialogTitle>Ready to Publish?</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                   Do you really want to publish the listing?
+                                                    Do you really want to publish the listing?
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                <AlertDialogAction onClick={()=>publishBtnHandler()} >
-                                                    {loading?<Loader className='animate-spin'/>:'Continue'}
-                                                    </AlertDialogAction>
+                                                <AlertDialogAction onClick={() => publishBtnHandler()} >
+                                                    {loading ? <Loader className='animate-spin' /> : 'Continue'}
+                                                </AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
